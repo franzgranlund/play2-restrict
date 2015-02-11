@@ -11,28 +11,32 @@ Dependencies:
 
     "commons-net" % "commons-net" % "3.3"
 
-application.conf:
+### Usage
 
-    restricttohostgroup {
-      groups {
-        default = ["127.0.0.1", "192.168.7.58", "10.0.2.0/24"],
-        intranet = ["10.0.1.96/28"]
-      },
-      redirect = "http://github.com"     # This is optional!
-    }
+- Copy [`RestrictToHostGroup.java`](https://github.com/franzgranlund/play2-restrict/blob/master/app/restrict/RestrictToHostGroup.java) and [`RestrictToHostGroupAction.java`](https://github.com/franzgranlund/play2-restrict/blob/master/app/restrict/RestrictToHostGroupAction.java) to a folder `app/restrict`.
 
+- Add settings in application.conf:
 
-Controller:
-
-    @RestrictToHostGroup // Same as @RestrictToHostGroup("default")
-    public class Application extends Controller {
-
-        public static Result index() {
-            return ok("index - restricted to host group 'default'");
+        restricttohostgroup {
+          groups {
+            default = ["127.0.0.1", "192.168.7.58", "10.0.2.0/24"],
+            intranet = ["10.0.1.96/28"]
+          },
+          redirect = "http://github.com"     # This is optional!
         }
 
-        @RestrictToHostGroup("intranet")
-        public static Result intranet() {
-            return ok("intranet - restricted to host group 'intranet'");
+
+- Configure your controller:
+
+        @RestrictToHostGroup // Same as @RestrictToHostGroup("default")
+        public class Application extends Controller {
+
+            public static Result index() {
+                return ok("index - restricted to host group 'default'");
+            }
+
+            @RestrictToHostGroup("intranet")
+            public static Result intranet() {
+                return ok("intranet - restricted to host group 'intranet'");
+            }
         }
-    }
