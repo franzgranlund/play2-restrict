@@ -1,6 +1,6 @@
 ## IP access list for Play Framework 2.3
 
-Simple IP access list for Play Framework Java controllers. Supports IPv4 IPs and CIDR.
+Simple IP access list for Play Framework Java controllers. Supports IPv4 IPs and CIDR notations.
 
 Requirements:
 
@@ -17,14 +17,15 @@ Dependencies:
 
 - Add settings in application.conf:
 
-        restricttohostgroup {
-          groups {
-            default = ["127.0.0.1", "192.168.7.58", "10.0.2.0/24"],
-            intranet = ["10.0.1.96/28"]
-          },
-          redirect = "http://github.com"     # This is optional!
-        }
-
+```javascript
+restricttohostgroup {
+    groups {
+        default = ["127.0.0.1", "192.168.7.58", "10.0.2.0/24"],
+        intranet = ["10.0.1.96/28"]
+    },
+    redirect = "http://github.com"     # This is optional!
+}
+```
 
 - Configure your controller:
 
