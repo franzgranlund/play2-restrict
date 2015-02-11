@@ -28,15 +28,17 @@ Dependencies:
 
 - Configure your controller:
 
-        @RestrictToHostGroup // Same as @RestrictToHostGroup("default")
-        public class Application extends Controller {
+```java
+@RestrictToHostGroup // Same as @RestrictToHostGroup("default")
+public class Application extends Controller {
 
-            public static Result index() {
-                return ok("index - restricted to host group 'default'");
-            }
+    public static Result index() {
+        return ok("index - restricted to host group 'default'");
+    }
 
-            @RestrictToHostGroup("intranet")
-            public static Result intranet() {
-                return ok("intranet - restricted to host group 'intranet'");
-            }
-        }
+    @RestrictToHostGroup("intranet")
+    public static Result intranet() {
+        return ok("intranet - restricted to host group 'intranet'");
+    }
+}
+```
